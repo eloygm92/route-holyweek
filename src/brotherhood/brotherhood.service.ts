@@ -4,6 +4,7 @@ import { CreateBrotherhoodDto } from './dto/create-brotherhood.dto';
 import { UpdateBrotherhoodDto } from './dto/update-brotherhood.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Brotherhood, BrotherhoodDocument } from './schemas/brotherhood.schema';
+import { Days } from '../Utils/Days';
 
 @Injectable()
 export class BrotherhoodService {
@@ -27,11 +28,16 @@ export class BrotherhoodService {
     return `This action returns a #${id} brotherhood`;
   }
 
+  find(day: Days) {
+    return this.brotherhoodModel.find({ procession_day: day });
+  }
+
   update(id: number, updateBrotherhoodDto: UpdateBrotherhoodDto) {
     return `This action updates a #${id} brotherhood`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} brotherhood`;
+  remove(nick: string) {
+    // TODO remove brotherhood validation via nickname
+    return this.brotherhoodModel.findOneAndDelete({ nick: nick });
   }
 }
