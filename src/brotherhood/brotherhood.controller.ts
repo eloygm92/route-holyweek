@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BrotherhoodService } from './brotherhood.service';
 import { CreateBrotherhoodDto } from './dto/create-brotherhood.dto';
 import { UpdateBrotherhoodDto } from './dto/update-brotherhood.dto';
-import { Days } from "../Utils/Days";
+import { Days } from '../Utils/Days';
 
 @Controller('brotherhood')
 export class BrotherhoodController {

@@ -21,23 +21,22 @@ export class BrotherhoodService {
   }
 
   async findAll(): Promise<Brotherhood[]> {
-    return this.brotherhoodModel.find().exec();
+    return await this.brotherhoodModel.find().exec();
   }
 
   findOne(id: number) {
     return `This action returns a #${id} brotherhood`;
   }
 
-  find(day: Days) {
-    return this.brotherhoodModel.find({ procession_day: day });
+  async find(day: Days): Promise<Brotherhood[]> {
+    return await this.brotherhoodModel.find({ procession_day: day }).exec();
   }
 
   update(id: number, updateBrotherhoodDto: UpdateBrotherhoodDto) {
     return `This action updates a #${id} brotherhood`;
   }
 
-  remove(nick: string) {
-    // TODO remove brotherhood validation via nickname
-    return this.brotherhoodModel.findOneAndDelete({ nick: nick });
+  async remove(nick: string): Promise<Brotherhood> {
+    return this.brotherhoodModel.findOneAndDelete({ nick: nick }).exec();
   }
 }
