@@ -4,7 +4,7 @@ import { Days } from '../../Utils/Days.enum';
 
 export type BrotherhoodDocument = Brotherhood & Document;
 
-@Schema({ versionKey: false })
+@Schema({ versionKey: false, timestamps: true })
 export class Brotherhood {
   @Prop({
     type: String,
