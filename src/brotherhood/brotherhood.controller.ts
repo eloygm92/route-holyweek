@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BrotherhoodService } from './brotherhood.service';
 import { CreateBrotherhoodDto } from './dto/create-brotherhood.dto';
 import { UpdateBrotherhoodDto } from './dto/update-brotherhood.dto';
-import { Days } from '../Utils/Days';
+import { Days } from '../Utils/Days.enum';
 
 @Controller('brotherhood')
 export class BrotherhoodController {
@@ -18,9 +18,9 @@ export class BrotherhoodController {
     return this.brotherhoodService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.brotherhoodService.findOne(+id);
+  @Get(':nick')
+  findOne(@Param('nick') nick: string) {
+    return this.brotherhoodService.findOne(nick);
   }
 
   @Get(':day(PalmSunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|EasterSunday)')
@@ -28,9 +28,9 @@ export class BrotherhoodController {
     return this.brotherhoodService.find(day);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBrotherhoodDto: UpdateBrotherhoodDto) {
-    return this.brotherhoodService.update(+id, updateBrotherhoodDto);
+  @Patch(':nick')
+  update(@Param('nick') nick: string, @Body() updateBrotherhoodDto: UpdateBrotherhoodDto) {
+    return this.brotherhoodService.update(nick, updateBrotherhoodDto);
   }
 
   @Delete(':nick')

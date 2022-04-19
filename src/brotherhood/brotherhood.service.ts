@@ -4,7 +4,7 @@ import { CreateBrotherhoodDto } from './dto/create-brotherhood.dto';
 import { UpdateBrotherhoodDto } from './dto/update-brotherhood.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Brotherhood, BrotherhoodDocument } from './schemas/brotherhood.schema';
-import { Days } from '../Utils/Days';
+import { Days } from '../Utils/Days.enum';
 
 @Injectable()
 export class BrotherhoodService {
@@ -24,16 +24,18 @@ export class BrotherhoodService {
     return await this.brotherhoodModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} brotherhood`;
+  async findOne(nick: string): Promise<BrotherhoodDocument> {
+    return await this.brotherhoodModel.findOne({ nick }).exec();
   }
 
   async find(day: Days): Promise<Brotherhood[]> {
     return await this.brotherhoodModel.find({ procession_day: day }).exec();
   }
 
-  update(id: number, updateBrotherhoodDto: UpdateBrotherhoodDto) {
-    return `This action updates a #${id} brotherhood`;
+  async update(nick: string, updateBrotherhoodDto: UpdateBrotherhoodDto) {
+    return await this.brotherhoodModel
+      .findOneAndUpdate({ nick }, updateBrotherhoodDto)
+      .exec();
   }
 
   async remove(nick: string): Promise<Brotherhood> {
