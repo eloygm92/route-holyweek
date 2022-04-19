@@ -1,0 +1,15 @@
+export enum TypeStreet {
+  Calle = 'Calle',
+  Avenida = 'Avenida',
+  Carretera = 'Carretera',
+  Plaza = 'Plaza',
+  Pasaje = 'Pasaje',
+  Pasillo = 'Pasillo',
+  Puente = 'Puente',
+  Bulevar = 'Bulevar',
+  Callejon = 'Callejon',
+  Camino = 'Camino',
+  Paseo = 'Paseo',
+  Tunel = 'Tunel',
+  Carril = 'Carril',
+}
