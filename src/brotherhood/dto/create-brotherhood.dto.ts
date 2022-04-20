@@ -1,4 +1,10 @@
-import { IsString, IsNotEmpty, IsNumber, IsOptional, IsEnum } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsEnum,
+} from 'class-validator';
 import { Days } from '../../Utils/Days.enum';
 
 export class CreateBrotherhoodDto {
@@ -26,6 +32,8 @@ export class CreateBrotherhoodDto {
   public address: string;
 
   @IsNotEmpty({ message: 'El dia de procesion no puede estar vacío' })
-  @IsEnum(Days, { message: 'El dia de procesion debe ser un dia de la Semana Santa' })
+  @IsEnum(Days, {
+    message: 'El dia de procesion debe ser un dia de la Semana Santa',
+  })
   public procession_day: Days;
 }

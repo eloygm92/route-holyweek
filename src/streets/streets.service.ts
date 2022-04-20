@@ -22,14 +22,26 @@ export class StreetsService {
   }
 
   async findOne(streetName: string): Promise<StreetDocument> {
-    return await this.streetModel.findOne({ streetName: {'$regex': `^${streetName}$`,'$options': 'i'} }).exec();
+    return await this.streetModel
+      .findOne({ streetName: { $regex: `^${streetName}$`, $options: 'i' } })
+      .exec();
   }
 
   async update(streetName: string, updateStreetDto: UpdateStreetDto) {
-    return await this.streetModel.findOneAndUpdate({ streetName: {'$regex': `^${streetName}$`,'$options': 'i'} }, updateStreetDto, { new: true }).exec();
+    return await this.streetModel
+      .findOneAndUpdate(
+        { streetName: { $regex: `^${streetName}$`, $options: 'i' } },
+        updateStreetDto,
+        { new: true },
+      )
+      .exec();
   }
 
   remove(streetName: string): Promise<Street> {
-    return this.streetModel.findOneAndDelete({ streetName: {'$regex': `^${streetName}$`,'$options': 'i'} }).exec();
+    return this.streetModel
+      .findOneAndDelete({
+        streetName: { $regex: `^${streetName}$`, $options: 'i' },
+      })
+      .exec();
   }
 }

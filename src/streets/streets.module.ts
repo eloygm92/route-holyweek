@@ -6,9 +6,7 @@ import { Street, StreetSchema } from './entities/street.entity';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: Street.name, schema: StreetSchema }
-    ]),
+    MongooseModule.forFeature([{ name: Street.name, schema: StreetSchema }]),
   ],
   controllers: [StreetsController],
   providers: [StreetsService],
