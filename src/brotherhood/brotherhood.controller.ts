@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { BrotherhoodService } from './brotherhood.service';
 import { CreateBrotherhoodDto } from './dto/create-brotherhood.dto';
 import { UpdateBrotherhoodDto } from './dto/update-brotherhood.dto';
@@ -23,13 +31,18 @@ export class BrotherhoodController {
     return this.brotherhoodService.findOne(nick);
   }
 
-  @Get(':day(PalmSunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|EasterSunday)')
+  @Get(
+    ':day(PalmSunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|EasterSunday)',
+  )
   find(@Param('day') day: Days) {
     return this.brotherhoodService.find(day);
   }
 
   @Patch(':nick')
-  update(@Param('nick') nick: string, @Body() updateBrotherhoodDto: UpdateBrotherhoodDto) {
+  update(
+    @Param('nick') nick: string,
+    @Body() updateBrotherhoodDto: UpdateBrotherhoodDto,
+  ) {
     return this.brotherhoodService.update(nick, updateBrotherhoodDto);
   }
 
