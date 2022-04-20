@@ -25,7 +25,9 @@ export class BrotherhoodService {
   }
 
   async findOne(nick: string): Promise<BrotherhoodDocument> {
-    return await this.brotherhoodModel.findOne({ nick: {'$regex': `^${nick}$`,'$options': 'i'}}).exec();
+    return await this.brotherhoodModel
+      .findOne({ nick: { $regex: `^${nick}$`, $options: 'i' } })
+      .exec();
   }
 
   async find(day: Days): Promise<Brotherhood[]> {
@@ -39,6 +41,8 @@ export class BrotherhoodService {
   }
 
   async remove(nick: string): Promise<Brotherhood> {
-    return this.brotherhoodModel.findOneAndDelete({ nick: {'$regex': `^${nick}$`,'$options': 'i'}}).exec();
+    return this.brotherhoodModel
+      .findOneAndDelete({ nick: { $regex: `^${nick}$`, $options: 'i' } })
+      .exec();
   }
 }
