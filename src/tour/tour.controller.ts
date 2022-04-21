@@ -6,15 +6,21 @@ import {
   Patch,
   Param,
   Delete,
+  BadRequestException,
 } from '@nestjs/common';
 import { TourService } from './tour.service';
 import { CreateTourDto } from './dto/create-tour.dto';
 import { UpdateTourDto } from './dto/update-tour.dto';
 import { Tour } from './entities/tour.entity';
+import { BrotherhoodService } from '../brotherhood/brotherhood.service';
+import { BrotherhoodDocument } from '../brotherhood/schemas/brotherhood.schema';
 
 @Controller('tour')
 export class TourController {
-  constructor(private readonly tourService: TourService) {}
+  constructor(
+    private readonly tourService: TourService,
+    private readonly brootherhoodService: BrotherhoodService,
+  ) {}
 
   @Post()
   create(@Body() createTourDto: CreateTourDto): Promise<Tour> {
@@ -37,6 +43,20 @@ export class TourController {
     @Body() updateTourDto: UpdateTourDto,
   ): Promise<Tour> {
     return this.tourService.update(+id, updateTourDto);
+  }
+
+  @Get(':brotherhoodName')
+  async findAllToursByBrotherhoodName(
+    @Param('brotherhoodName') brotherhoodName: string,
+  ): Promise<Tour[]> {
+    const brotherhood: BrotherhoodDocument =
+      await this.brootherhoodService.findOne(brotherhoodName);
+    if (!brotherhood) {
+      throw new BadRequestException('Invalid Brotherhood name');
+    }
+    return await this.tourService.findAllToursByBrotherhoodName(
+      brotherhood._id,
+    );
   }
 
   @Delete(':id')

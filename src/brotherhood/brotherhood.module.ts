@@ -12,5 +12,6 @@ import { Brotherhood, BrotherhoodSchema } from './schemas/brotherhood.schema';
   ],
   controllers: [BrotherhoodController],
   providers: [BrotherhoodService],
+  exports: [BrotherhoodService],
 })
 export class BrotherhoodModule {}
