@@ -50,4 +50,9 @@ export class CreateTourDto {
   @IsString({ message: 'La hora del encierro tiene que ser un string' })
   @IsNotEmpty({ message: 'La hora del encierro no puede estar vacía' })
   public end: string;
+
+  @IsNotEmpty({
+    message: 'La cofradia a la que pertenece no puede estar vacías',
+  })
+  public brotherhood: Types.ObjectId;
 }

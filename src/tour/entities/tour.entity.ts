@@ -28,6 +28,9 @@ export class Tour {
 
   @Prop({ type: String, required: true })
   end: string;
+
+  @Prop({ type: Types.ObjectId, required: true })
+  brotherhood: Types.ObjectId;
 }
 
 export const TourSchema = SchemaFactory.createForClass(Tour);

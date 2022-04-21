@@ -37,4 +37,8 @@ export class TourService {
   async remove(id: number) {
     return await this.tourModel.findOneAndDelete({ id: id }).exec();
   }
+
+  async findAllToursByBrotherhoodName(brotherhoodId: string): Promise<Tour[]> {
+    return await this.tourModel.find({ brotherhood: brotherhoodId }).exec();
+  }
 }
