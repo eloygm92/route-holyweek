@@ -4,7 +4,7 @@ import { CreateBrotherhoodDto } from './dto/create-brotherhood.dto';
 import { UpdateBrotherhoodDto } from './dto/update-brotherhood.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Brotherhood, BrotherhoodDocument } from './schemas/brotherhood.schema';
-import { Days } from '../Utils/Days.enum';
+import { Days } from '../utils/Days.enum';
 
 @Injectable()
 export class BrotherhoodService {

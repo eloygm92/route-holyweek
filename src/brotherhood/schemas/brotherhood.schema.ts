@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Days } from '../../Utils/Days.enum';
+import { Days } from '../../utils/Days.enum';
 
 export type BrotherhoodDocument = Brotherhood & Document;
 

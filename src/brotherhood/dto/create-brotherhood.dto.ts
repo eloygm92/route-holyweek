@@ -5,7 +5,7 @@ import {
   IsOptional,
   IsEnum,
 } from 'class-validator';
-import { Days } from '../../Utils/Days.enum';
+import { Days } from '../../utils/Days.enum';
 
 export class CreateBrotherhoodDto {
   @IsString({ message: 'El nombre debe ser un string' })

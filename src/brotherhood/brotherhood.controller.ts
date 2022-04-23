@@ -10,7 +10,7 @@ import {
 import { BrotherhoodService } from './brotherhood.service';
 import { CreateBrotherhoodDto } from './dto/create-brotherhood.dto';
 import { UpdateBrotherhoodDto } from './dto/update-brotherhood.dto';
-import { Days } from '../Utils/Days.enum';
+import { Days } from '../utils/Days.enum';
 
 @Controller('brotherhood')
 export class BrotherhoodController {

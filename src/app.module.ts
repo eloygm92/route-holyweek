@@ -4,6 +4,8 @@ import { ConfigModule } from '@nestjs/config';
 import { BrotherhoodModule } from './brotherhood/brotherhood.module';
 import { StreetsModule } from './streets/streets.module';
 import { TourModule } from './tour/tour.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -18,6 +20,9 @@ import { TourModule } from './tour/tour.module';
     BrotherhoodModule,
     StreetsModule,
     TourModule,
+    AuthModule,
+    UsersModule,
   ],
+  controllers: [],
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty, IsObject, IsEnum } from 'class-validator';
-import { TypeStreet } from '../../Utils/TypeStreet.enum';
+import { TypeStreet } from '../../utils/TypeStreet.enum';
 
 export class CreateStreetDto {
   @IsString({ message: 'El nombre debe ser un string' })

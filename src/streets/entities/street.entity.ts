@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { TypeStreet } from '../../Utils/TypeStreet.enum';
+import { TypeStreet } from '../../utils/TypeStreet.enum';
 
 export type StreetDocument = Street & Document;
 
