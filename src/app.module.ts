@@ -5,7 +5,7 @@ import { BrotherhoodModule } from './brotherhood/brotherhood.module';
 import { StreetsModule } from './streets/streets.module';
 import { TourModule } from './tour/tour.module';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { UsersModule } from './users/users.module';
     StreetsModule,
     TourModule,
     AuthModule,
-    UsersModule,
+    UserModule,
   ],
   controllers: [],
 })
