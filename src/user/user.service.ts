@@ -30,7 +30,7 @@ export class UserService {
     } else {
       foundRole = await this.roleModel
         .findOne({
-          name: 'user',
+          name: 'User',
         })
         .exec();
     }

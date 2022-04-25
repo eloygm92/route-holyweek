@@ -31,22 +31,6 @@ export class Brotherhood {
 
   @Prop()
   procession_day: Days;
-
-  // TODO cambiar las horas a la entidad de recorrido
-  /*@Prop()
-  start: string;
-
-  @Prop()
-  tribune: string;
-
-  @Prop()
-  grove: string;
-
-  @Prop()
-  cathedral: string;
-
-  @Prop()
-  end: string;*/
 }
 
 export const BrotherhoodSchema = SchemaFactory.createForClass(Brotherhood);
