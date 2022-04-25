@@ -10,6 +10,7 @@ import {
 import { StreetsService } from './streets.service';
 import { CreateStreetDto } from './dto/create-street.dto';
 import { UpdateStreetDto } from './dto/update-street.dto';
+import {Public} from "../utils/publicDecorator";
 
 @Controller('streets')
 export class StreetsController {
@@ -20,11 +21,13 @@ export class StreetsController {
     return this.streetsService.create(createStreetDto);
   }
 
+  @Public()
   @Get()
   findAll() {
     return this.streetsService.findAll();
   }
 
+  @Public()
   @Get(':streetName')
   findOne(@Param('streetName') streetName: string) {
     return this.streetsService.findOne(streetName);

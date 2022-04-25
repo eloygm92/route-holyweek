@@ -14,6 +14,7 @@ import { UpdateTourDto } from './dto/update-tour.dto';
 import { Tour } from './entities/tour.entity';
 import { BrotherhoodService } from '../brotherhood/brotherhood.service';
 import { BrotherhoodDocument } from '../brotherhood/schemas/brotherhood.schema';
+import {Public} from "../utils/publicDecorator";
 
 @Controller('tour')
 export class TourController {
@@ -27,11 +28,13 @@ export class TourController {
     return this.tourService.create(createTourDto);
   }
 
+  @Public()
   @Get(':tourYear([0-9]+)')
   findYear(@Param('tourYear') tourYear: number): Promise<Tour[]> {
     return this.tourService.findYear(tourYear);
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Tour> {
     return this.tourService.findOne(+id);
@@ -45,6 +48,7 @@ export class TourController {
     return this.tourService.update(+id, updateTourDto);
   }
 
+  @Public()
   @Get(':brotherhoodName')
   async findAllToursByBrotherhoodName(
     @Param('brotherhoodName') brotherhoodName: string,
