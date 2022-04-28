@@ -11,7 +11,7 @@ import { BrotherhoodService } from './brotherhood.service';
 import { CreateBrotherhoodDto } from './dto/create-brotherhood.dto';
 import { UpdateBrotherhoodDto } from './dto/update-brotherhood.dto';
 import { Days } from '../utils/Days.enum';
-import { Public } from '../utils/public.decorator';
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('brotherhood')
 export class BrotherhoodController {

@@ -10,7 +10,7 @@ import {
 import { StreetsService } from './streets.service';
 import { CreateStreetDto } from './dto/create-street.dto';
 import { UpdateStreetDto } from './dto/update-street.dto';
-import {Public} from "../utils/public.decorator";
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('streets')
 export class StreetsController {

@@ -4,7 +4,7 @@ import { StreetsController } from './streets.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Street, StreetSchema } from './entities/street.entity';
 import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
 
 @Module({
   imports: [

@@ -62,4 +62,8 @@ export class UserService {
   async findRole(id: number): Promise<Role | undefined> {
     return this.roleModel.findOne({ _id: id }).exec();
   }
+
+  async findAllRole(): Promise<Role[]> {
+    return this.roleModel.find().exec();
+  }
 }

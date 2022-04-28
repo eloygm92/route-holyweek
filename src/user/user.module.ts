@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
 import { Role, RoleSchema } from './schemas/role.schema';
 import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -15,13 +15,13 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
     ]),
   ],
   controllers: [UserController],
-  providers: [UserService],
-  exports: [
+  providers: [
     UserService,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
     },
   ],
+  exports: [UserService],
 })
 export class UserModule {}

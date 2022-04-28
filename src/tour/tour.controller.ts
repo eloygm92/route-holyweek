@@ -14,7 +14,7 @@ import { UpdateTourDto } from './dto/update-tour.dto';
 import { Tour } from './entities/tour.entity';
 import { BrotherhoodService } from '../brotherhood/brotherhood.service';
 import { BrotherhoodDocument } from '../brotherhood/schemas/brotherhood.schema';
-import {Public} from "../utils/public.decorator";
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('tour')
 export class TourController {

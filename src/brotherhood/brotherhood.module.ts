@@ -4,7 +4,7 @@ import { BrotherhoodController } from './brotherhood.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Brotherhood, BrotherhoodSchema } from './schemas/brotherhood.schema';
 import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
 
 @Module({
   imports: [
