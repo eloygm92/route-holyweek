@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose from 'mongoose';
 import { TypeStreet } from '../../utils/TypeStreet.enum';
 
-export type StreetDocument = Street & Document;
+export type StreetDocument = Street & mongoose.Document;
 
 @Schema({ versionKey: false, timestamps: true })
-export class Street {
+export class Street extends mongoose.Document {
   @Prop({
     type: String,
     unique: true,

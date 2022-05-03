@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose from 'mongoose';
 import { Days } from '../../utils/Days.enum';
 
-export type BrotherhoodDocument = Brotherhood & Document;
+export type BrotherhoodDocument = Brotherhood & mongoose.Document;
 
 @Schema({ versionKey: false, timestamps: true })
-export class Brotherhood {
+export class Brotherhood extends mongoose.Document {
   @Prop({
     type: String,
     unique: true,

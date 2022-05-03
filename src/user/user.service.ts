@@ -16,7 +16,7 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<UserDocument> {
-    const createdUser = new this.userModel(createUserDto);
+    let createdUser = new this.userModel(createUserDto);
     createdUser.password = await createdUser.encryptPassword(
       createdUser.password,
     );
