@@ -39,5 +39,5 @@ UserSchema.methods.comparePassword = async function comparePassword(
   password: string,
   receivedPassword: string,
 ): Promise<boolean> {
-  return await bcrypt.compare(password, receivedPassword);
+  return await bcrypt.compare(receivedPassword, password);
 };
