@@ -11,6 +11,7 @@ import { StreetsService } from './streets.service';
 import { CreateStreetDto } from './dto/create-street.dto';
 import { UpdateStreetDto } from './dto/update-street.dto';
 import { Public } from '../auth/decorators/public.decorator';
+import { TypeStreet } from '../utils/TypeStreet.enum';
 
 @Controller('streets')
 export class StreetsController {
@@ -25,6 +26,18 @@ export class StreetsController {
   @Get()
   findAll() {
     return this.streetsService.findAll();
+  }
+
+  @Get('types')
+  findTypes() {
+    const arrayType = Object.keys(TypeStreet).map((name) => {
+      return {
+        label: name,
+        value: TypeStreet[name as keyof typeof TypeStreet],
+      };
+    });
+
+    return arrayType;
   }
 
   @Public()

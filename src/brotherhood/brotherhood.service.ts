@@ -26,7 +26,11 @@ export class BrotherhoodService {
 
   async findOne(nick: string): Promise<BrotherhoodDocument> {
     return await this.brotherhoodModel
-      .findOne({ nick: { $regex: `^${nick}$`, $options: 'i' } })
+      .findOne(
+        { nick: { $regex: `^${nick}$`, $options: 'i' } },
+        {},
+        { populate: 'tour' },
+      )
       .exec();
   }
 

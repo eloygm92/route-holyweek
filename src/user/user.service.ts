@@ -42,11 +42,18 @@ export class UserService {
   }
 
   async findOne(username: string): Promise<User | undefined> {
-    return this.userModel.findOne({ username: username }).exec();
+    return this.userModel
+      .findOne({ username: username })
+      .populate({ path: 'role' })
+      .exec();
   }
 
   async findAll(): Promise<UserDocument[]> {
-    return await this.userModel.find().exec();
+    return await this.userModel
+      .find()
+      .select('-password')
+      .populate({ path: 'role' })
+      .exec();
   }
 
   async update(username: string, updateUserDto: UpdateUserDto): Promise<User> {
