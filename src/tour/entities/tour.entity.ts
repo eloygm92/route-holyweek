@@ -1,18 +1,22 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
+import mongoose from 'mongoose';
+import { Brotherhood } from '../../brotherhood/schemas/brotherhood.schema';
+import { Street } from '../../streets/entities/street.entity';
 
-export type TourDocument = Tour & Document;
+export type TourDocument = Tour & mongoose.Document;
 
 @Schema({ versionKey: false, timestamps: true })
-export class Tour {
+export class Tour extends mongoose.Document {
   @Prop({ type: String, required: true })
   year: number;
 
   @Prop([{ type: String, required: true }])
   hours: string[];
 
-  @Prop([{ type: Types.ObjectId, ref: 'Street', required: true }])
-  streets: Types.ObjectId[];
+  @Prop([
+    { type: mongoose.Schema.Types.ObjectId, ref: 'Street', required: true },
+  ])
+  streets: Street[];
 
   @Prop({ type: String, required: true })
   start: string;
@@ -29,8 +33,8 @@ export class Tour {
   @Prop({ type: String, required: true })
   end: string;
 
-  @Prop({ type: Types.ObjectId, required: true })
-  brotherhood: Types.ObjectId;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, required: true })
+  brotherhood: Brotherhood;
 }
 
 export const TourSchema = SchemaFactory.createForClass(Tour);

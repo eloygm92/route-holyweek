@@ -4,7 +4,7 @@ import { CreateBrotherhoodDto } from './dto/create-brotherhood.dto';
 import { UpdateBrotherhoodDto } from './dto/update-brotherhood.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Brotherhood, BrotherhoodDocument } from './schemas/brotherhood.schema';
-import { Days } from '../Utils/Days.enum';
+import { Days } from '../utils/Days.enum';
 
 @Injectable()
 export class BrotherhoodService {
@@ -26,7 +26,11 @@ export class BrotherhoodService {
 
   async findOne(nick: string): Promise<BrotherhoodDocument> {
     return await this.brotherhoodModel
-      .findOne({ nick: { $regex: `^${nick}$`, $options: 'i' } })
+      .findOne(
+        { nick: { $regex: `^${nick}$`, $options: 'i' } },
+        {},
+        { populate: 'tour' },
+      )
       .exec();
   }
 

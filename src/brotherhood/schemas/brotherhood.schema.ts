@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import { Days } from '../../Utils/Days.enum';
+import mongoose from 'mongoose';
+import { Days } from '../../utils/Days.enum';
 
-export type BrotherhoodDocument = Brotherhood & Document;
+export type BrotherhoodDocument = Brotherhood & mongoose.Document;
 
 @Schema({ versionKey: false, timestamps: true })
-export class Brotherhood {
+export class Brotherhood extends mongoose.Document {
   @Prop({
     type: String,
     unique: true,
@@ -31,22 +31,6 @@ export class Brotherhood {
 
   @Prop()
   procession_day: Days;
-
-  // TODO cambiar las horas a la entidad de recorrido
-  /*@Prop()
-  start: string;
-
-  @Prop()
-  tribune: string;
-
-  @Prop()
-  grove: string;
-
-  @Prop()
-  cathedral: string;
-
-  @Prop()
-  end: string;*/
 }
 
 export const BrotherhoodSchema = SchemaFactory.createForClass(Brotherhood);

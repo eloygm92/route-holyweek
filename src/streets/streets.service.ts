@@ -18,7 +18,7 @@ export class StreetsService {
   }
 
   async findAll(): Promise<Street[]> {
-    return await this.streetModel.find().exec();
+    return await this.streetModel.find().select('-geoJson').exec();
   }
 
   async findOne(streetName: string): Promise<StreetDocument> {
