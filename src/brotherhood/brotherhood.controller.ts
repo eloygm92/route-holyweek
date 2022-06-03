@@ -28,6 +28,18 @@ export class BrotherhoodController {
     return this.brotherhoodService.findAll();
   }
 
+  @Get('procession_days')
+  findProcession_day() {
+    const arrayProcessionDay = Object.keys(Days).map((name) => {
+      return {
+        label: name,
+        value: Days[name as keyof typeof Days],
+      };
+    });
+
+    return arrayProcessionDay;
+  }
+
   @Get(':nick')
   findOne(@Param('nick') nick: string) {
     return this.brotherhoodService.findOne(nick);
