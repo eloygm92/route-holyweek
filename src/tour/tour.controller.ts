@@ -35,20 +35,6 @@ export class TourController {
   }
 
   @Public()
-  @Get(':id')
-  findOne(@Param('id') id: string): Promise<Tour> {
-    return this.tourService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateTourDto: UpdateTourDto,
-  ): Promise<Tour> {
-    return this.tourService.update(+id, updateTourDto);
-  }
-
-  @Public()
   @Get(':brotherhoodName')
   async findAllToursByBrotherhoodName(
     @Param('brotherhoodName') brotherhoodName: string,
@@ -61,6 +47,20 @@ export class TourController {
     return await this.tourService.findAllToursByBrotherhoodName(
       brotherhood._id,
     );
+  }
+
+  @Public()
+  @Get(':id')
+  findOne(@Param('id') id: string): Promise<Tour> {
+    return this.tourService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateTourDto: UpdateTourDto,
+  ): Promise<Tour> {
+    return this.tourService.update(+id, updateTourDto);
   }
 
   @Delete(':id')

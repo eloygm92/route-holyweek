@@ -18,7 +18,7 @@ export class CreateBrotherhoodDto {
 
   @IsNumber(
     { allowNaN: false, allowInfinity: false },
-    { message: 'El año de fundación debe ser un string' },
+    { message: 'El año de fundación debe ser un numero' },
   )
   @IsOptional()
   public foundation: number;
