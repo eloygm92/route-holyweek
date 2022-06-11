@@ -22,15 +22,16 @@ export class StreetsService {
   }
 
   async findOne(streetName: string): Promise<StreetDocument> {
+    console.log(streetName);
     return await this.streetModel
-      .findOne({ streetName: { $regex: `^${streetName}$`, $options: 'i' } })
+      .findOne({ name: { $regex: `^${streetName}$`, $options: 'i' } })
       .exec();
   }
 
   async update(streetName: string, updateStreetDto: UpdateStreetDto) {
     return await this.streetModel
       .findOneAndUpdate(
-        { streetName: { $regex: `^${streetName}$`, $options: 'i' } },
+        { name: { $regex: `^${streetName}$`, $options: 'i' } },
         updateStreetDto,
         { new: true },
       )
