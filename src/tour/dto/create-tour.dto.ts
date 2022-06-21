@@ -2,8 +2,8 @@ import {
   IsString,
   IsNumber,
   IsNotEmpty,
-  IsArray,
-  ValidateNested,
+  IsMongoId,
+  ArrayMinSize,
 } from 'class-validator';
 import { Types } from 'mongoose';
 
@@ -15,13 +15,13 @@ export class CreateTourDto {
   @IsNotEmpty({ message: 'El año no puede estar vacío' })
   public year: number;
 
-  @IsArray({ message: 'Las horas deben ser un array' })
+  /*@IsArray({ message: 'Las horas deben ser un array' })
   @ValidateNested({ each: true })
   @IsNotEmpty({ message: 'Las horas no pueden estar vacías' })
-  public hours: string[];
+  public hours: string[];*/
 
-  @IsArray({ message: 'Las calles deben ser un array' })
-  @ValidateNested({ each: true })
+  @IsMongoId({ each: true, message: 'Las calles deben ser un array' })
+  @ArrayMinSize(1)
   @IsNotEmpty({ message: 'Las calles no pueden estar vacías' })
   public streets: Types.ObjectId[];
 
@@ -51,6 +51,7 @@ export class CreateTourDto {
   @IsNotEmpty({ message: 'La hora del encierro no puede estar vacía' })
   public end: string;
 
+  @IsString({ message: 'La cofradia debe ser un string' })
   @IsNotEmpty({
     message: 'La cofradia a la que pertenece no puede estar vacías',
   })

@@ -40,6 +40,21 @@ export class StreetsController {
     return arrayType;
   }
 
+  @Get('tags')
+  async getTags() {
+    const allStreets = await this.streetsService.findAll();
+
+    const tags = [];
+    for (const street of allStreets) {
+      tags.push({
+        key: street._id,
+        label: street.type + ' ' + street.name,
+      });
+    }
+
+    return tags;
+  }
+
   @Public()
   @Get(':streetName')
   findOne(@Param('streetName') streetName: string) {

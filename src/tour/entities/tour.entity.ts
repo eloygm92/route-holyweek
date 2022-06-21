@@ -7,33 +7,37 @@ export type TourDocument = Tour & mongoose.Document;
 
 @Schema({ versionKey: false, timestamps: true })
 export class Tour extends mongoose.Document {
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   year: number;
 
-  @Prop([{ type: String, required: true }])
-  hours: string[];
+  /*@Prop([{ type: String, required: true }])
+  hours: string[];*/
 
   @Prop([
-    { type: mongoose.Schema.Types.ObjectId, ref: 'Street', required: true },
+    { ref: 'Street', type: mongoose.Schema.Types.ObjectId, required: true },
   ])
   streets: Street[];
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   start: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   tribune: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   grove: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   cathedral: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   end: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, required: true })
+  @Prop({
+    ref: 'Brotherhood',
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  })
   brotherhood: Brotherhood;
 }
 

@@ -39,6 +39,9 @@ export class TourService {
   }
 
   async findAllToursByBrotherhoodName(brotherhoodId: string): Promise<Tour[]> {
-    return await this.tourModel.find({ brotherhood: brotherhoodId }).exec();
+    return await this.tourModel
+      .find({ brotherhood: brotherhoodId })
+      .populate(['streets'])
+      .exec();
   }
 }
