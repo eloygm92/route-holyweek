@@ -18,19 +18,19 @@ export class StreetsService {
   }
 
   async findAll(): Promise<Street[]> {
-    return await this.streetModel.find().exec();
+    return await this.streetModel.find().select('-geoJson').exec();
   }
 
   async findOne(streetName: string): Promise<StreetDocument> {
     return await this.streetModel
-      .findOne({ streetName: { $regex: `^${streetName}$`, $options: 'i' } })
+      .findOne({ name: { $regex: `^${streetName}$`, $options: 'i' } })
       .exec();
   }
 
   async update(streetName: string, updateStreetDto: UpdateStreetDto) {
     return await this.streetModel
       .findOneAndUpdate(
-        { streetName: { $regex: `^${streetName}$`, $options: 'i' } },
+        { name: { $regex: `^${streetName}$`, $options: 'i' } },
         updateStreetDto,
         { new: true },
       )

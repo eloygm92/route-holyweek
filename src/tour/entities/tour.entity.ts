@@ -1,33 +1,44 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
+import mongoose from 'mongoose';
+import { Brotherhood } from '../../brotherhood/schemas/brotherhood.schema';
+import { Street } from '../../streets/entities/street.entity';
 
-export type TourDocument = Tour & Document;
+export type TourDocument = Tour & mongoose.Document;
 
 @Schema({ versionKey: false, timestamps: true })
-export class Tour {
-  @Prop({ type: String, required: true })
+export class Tour extends mongoose.Document {
+  @Prop({ required: true })
   year: number;
 
-  @Prop([{ type: String, required: true }])
-  hours: string[];
+  /*@Prop([{ type: String, required: true }])
+  hours: string[];*/
 
-  @Prop([{ type: Types.ObjectId, ref: 'Street', required: true }])
-  streets: Types.ObjectId[];
+  @Prop([
+    { ref: 'Street', type: mongoose.Schema.Types.ObjectId, required: true },
+  ])
+  streets: Street[];
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   start: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   tribune: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   grove: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   cathedral: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ required: true })
   end: string;
+
+  @Prop({
+    ref: 'Brotherhood',
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  })
+  brotherhood: Brotherhood;
 }
 
 export const TourSchema = SchemaFactory.createForClass(Tour);

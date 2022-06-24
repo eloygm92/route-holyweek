@@ -5,7 +5,7 @@ import {
   IsOptional,
   IsEnum,
 } from 'class-validator';
-import { Days } from '../../Utils/Days.enum';
+import { Days } from '../../utils/Days.enum';
 
 export class CreateBrotherhoodDto {
   @IsString({ message: 'El nombre debe ser un string' })
@@ -18,7 +18,7 @@ export class CreateBrotherhoodDto {
 
   @IsNumber(
     { allowNaN: false, allowInfinity: false },
-    { message: 'El año de fundación debe ser un string' },
+    { message: 'El año de fundación debe ser un numero' },
   )
   @IsOptional()
   public foundation: number;

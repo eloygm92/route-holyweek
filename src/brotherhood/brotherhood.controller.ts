@@ -10,7 +10,8 @@ import {
 import { BrotherhoodService } from './brotherhood.service';
 import { CreateBrotherhoodDto } from './dto/create-brotherhood.dto';
 import { UpdateBrotherhoodDto } from './dto/update-brotherhood.dto';
-import { Days } from '../Utils/Days.enum';
+import { Days } from '../utils/Days.enum';
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('brotherhood')
 export class BrotherhoodController {
@@ -21,9 +22,22 @@ export class BrotherhoodController {
     return this.brotherhoodService.create(createBrotherhoodDto);
   }
 
+  @Public()
   @Get()
   findAll() {
     return this.brotherhoodService.findAll();
+  }
+
+  @Get('procession_days')
+  findProcession_day() {
+    const arrayProcessionDay = Object.keys(Days).map((name) => {
+      return {
+        label: name,
+        value: Days[name as keyof typeof Days],
+      };
+    });
+
+    return arrayProcessionDay;
   }
 
   @Get(':nick')
@@ -31,6 +45,7 @@ export class BrotherhoodController {
     return this.brotherhoodService.findOne(nick);
   }
 
+  @Public()
   @Get(
     ':day(PalmSunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|EasterSunday)',
   )

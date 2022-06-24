@@ -3,6 +3,8 @@ import { BrotherhoodService } from './brotherhood.service';
 import { BrotherhoodController } from './brotherhood.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Brotherhood, BrotherhoodSchema } from './schemas/brotherhood.schema';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -11,6 +13,13 @@ import { Brotherhood, BrotherhoodSchema } from './schemas/brotherhood.schema';
     ]),
   ],
   controllers: [BrotherhoodController],
-  providers: [BrotherhoodService],
+  providers: [
+    BrotherhoodService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
+  exports: [BrotherhoodService],
 })
 export class BrotherhoodModule {}
