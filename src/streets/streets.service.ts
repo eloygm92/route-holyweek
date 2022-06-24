@@ -22,7 +22,6 @@ export class StreetsService {
   }
 
   async findOne(streetName: string): Promise<StreetDocument> {
-    console.log(streetName);
     return await this.streetModel
       .findOne({ name: { $regex: `^${streetName}$`, $options: 'i' } })
       .exec();

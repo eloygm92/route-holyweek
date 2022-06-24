@@ -25,6 +25,11 @@ export class UserController {
     return this.usersService.findAll();
   }
 
+  @Get('roles')
+  findAllRoles() {
+    return this.usersService.findAllRole();
+  }
+
   @Patch(':username')
   update(
     @Param('username') username: string,
