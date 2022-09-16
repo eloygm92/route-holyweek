@@ -41,9 +41,9 @@ export class UserService {
     return createdUser.save();
   }
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.userModel
-      .findOne({ username: username })
+  async findOne(id: string): Promise<User | undefined> {
+    return await this.userModel
+      .findOne({ id: id })
       .populate({ path: 'role' })
       .exec();
   }

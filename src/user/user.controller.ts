@@ -30,6 +30,11 @@ export class UserController {
     return this.usersService.findAllRole();
   }
 
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.usersService.findOne(id);
+  }
+
   @Patch(':username')
   update(
     @Param('username') username: string,
