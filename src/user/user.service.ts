@@ -57,7 +57,23 @@ export class UserService {
   }
 
   async update(username: string, updateUserDto: UpdateUserDto): Promise<User> {
-    return this.userModel
+    const user = await this.userModel.findOne({ username: username }).exec();
+
+    if (
+      updateUserDto.password &&
+      !user.comparePassword(user.password, updateUserDto.password)
+    ) {
+      updateUserDto.password = await user.encryptPassword(
+        updateUserDto.password,
+      );
+    }
+    const role = await this.roleModel
+      .findOne({ _id: updateUserDto.role })
+      .exec();
+    if (role !== user.role) {
+      updateUserDto.role = role._id;
+    }
+    return await this.userModel
       .findOneAndUpdate({ username: username }, updateUserDto, { new: true })
       .exec();
   }
