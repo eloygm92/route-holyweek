@@ -68,12 +68,15 @@ export class UserService {
 
     if (
       updateUserDto.password &&
-      !user.comparePassword(user.password, updateUserDto.password)
+      !(await user.comparePassword(user.password, updateUserDto.password))
     ) {
       updateUserDto.password = await user.encryptPassword(
         updateUserDto.password,
       );
+    } else {
+      updateUserDto.password = user.password;
     }
+
     const role = await this.roleModel
       .findOne({ _id: updateUserDto.role })
       .exec();
