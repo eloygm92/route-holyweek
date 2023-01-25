@@ -48,6 +48,13 @@ export class UserService {
       .exec();
   }
 
+  async findOneByName(id: string): Promise<User | undefined> {
+    return await this.userModel
+      .findOne({ username: id })
+      .populate({ path: 'role' })
+      .exec();
+  }
+
   async findAll(): Promise<UserDocument[]> {
     return await this.userModel
       .find()
